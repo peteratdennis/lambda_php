@@ -1,0 +1,19 @@
+
+# https://akrabat.com/serverless-php-on-aws-lambda/
+service: php-hello-world
+provider:
+  name: aws
+  runtime: provided
+  region: eu-west-1
+  memorySize: 128
+
+
+layers:
+  php:
+    path: layer/php
+
+functions:
+  hello:
+    handler: handler.hello
+    layers:
+      - {Ref: PhpLambdaLayer}
